@@ -13,7 +13,7 @@ $(document).ready(function() {
 	bindEvents();
 	
 	// Retrieve the contents of the stack.
-	viewStack();
+	viewStack(true);
 });
 
 function bindEvents() {
@@ -24,16 +24,18 @@ function bindEvents() {
 	});
 	
 	// Keyup event on the text box
-	$('#txtElement').on('keyup', function(e) {
+	$('#txtElement').on('keyup change', function(e) {
 		// Disable the push button if the textbox is empty, enable otherwise
 		$('#btnPush').prop('disabled', $(this).val() == '');
 	});
 }
 
 // Viewing the contents of the stack
-function viewStack() {
-	// Empty the info message if present
-	$('#infoMessage').empty();
+function viewStack(clearInfoMessage) {
+	if(clearInfoMessage) {
+		// Empty the info message if present
+		$('#infoMessage').empty();		
+	}
 	
 	$.ajax({
 		url: 'rest/stack/view',
@@ -104,7 +106,7 @@ function push() {
 			// Disable the push button
 			$('#btnPush').prop('disabled', true);
 			// Refresh the stack contents on display after successful push operation.
-			viewStack();
+			viewStack(true);
 		}, 
 		error: function(jqXHR, textStatus, errorThrown) {
 			if(jqXHR.status == STATUS_CODE.STACK_DOES_NOT_EXIST) {
@@ -129,7 +131,7 @@ function pop() {
 			// Display a message with the popped data
 			animateMessage($('#infoMessage'), data + ' has been popped from the stack.');
 			// Refresh the stack contents on display after successful pop operation.
-			viewStack();
+			viewStack(false);
 		}, 
 		error: function(jqXHR, textStatus, errorThrown) {
 			if(jqXHR.status == STATUS_CODE.STACK_DOES_NOT_EXIST) {
@@ -225,7 +227,7 @@ function continueSession() {
 	clearInterval(sessionTimeoutTimer);
 	$('#sessionTimeoutConfirmation').hide()
 	$('#content').fadeIn(500);
-	viewStack();
+	viewStack(true);
 }
 
 // To reset in the current session and start a new one
