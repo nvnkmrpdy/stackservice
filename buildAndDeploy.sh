@@ -1,16 +1,29 @@
 #!/bin/bash
 
 # Clone the repository
-git clone https://github.com/nvnkmrpdy/stackservice.git
-
-# cd into the parent directory
-cd stackservice
+if [ ! -d "stackservice" ]; then
+	echo "Cloning the stackservice repository from git hub..."
+	# Clone the repository if it doesn't already exist..
+	git clone https://github.com/nvnkmrpdy/stackservice.git
+	echo "Repository stackservice cloned from git hub"
+	# cd into the parent directory
+	cd stackservice
+ else
+	# cd into the parent directory
+	cd stackservice
+	# Pull the changes
+	echo "Pulling the changes from the repository..."
+	git pull
+fi
 
 # Build and package the project
-docker run -it --rm -v "$PWD":/app -w /app demo/maven:3.3-jdk-8 mvn clean install
+echo "Building the stackservice app..."
+docker run -it --rm -v "$PWD":/app -w /app maven:3.3-jdk-8 mvn clean install
 
 # Build the Dockerfile
-docker build -f Dockerfile -t demo/tomcat:8
+echo "Invoking the Dockerfile..."
+docker build -f Dockerfile -t tomcat:8 .
 
 # Run the application
-docker run --rm -p 8080:8080 demo/tomcat:8
+echo "Starting the Tomcat server..."
+docker run --rm -p 8080:8080 tomcat:8
