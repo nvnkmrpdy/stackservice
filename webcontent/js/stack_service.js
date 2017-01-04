@@ -4,7 +4,7 @@ var STATUS_CODE = {
 		STACK_DOES_NOT_EXIST: 601
 };
 
-var MAX_SESSION_INACTIVITY_TIME_IN_MINUTES = 5;
+var MAX_SESSION_INACTIVITY_TIME_IN_MINUTES = 2;
 var sessionTimeoutTimer, idleTimer, timerCountdownTriggered = false;
 
 $(document).ready(function() {
@@ -239,8 +239,11 @@ function resetSession() {
 		url: 'invalidate_session',
 		method: 'GET',
 		success: function(data) {
-			// Reload the page 
-			location.reload();
+			$('#sessionTimeoutConfirmation').hide()
+			$('#content').fadeIn(500);
+			// DIsplay message to the user about the reset of the session
+			animateMessage($('#infoMessage'), 'Your session has been reset due to inactivity.');
+			viewStack(false);
 		}, 
 		error: function(jqXHR, textStatus, errorThrown) {
 			animateMessage($('#infoMessage'), 'Oops! Looks like some of our gears need some fixing. Failed to reset the current session.');
