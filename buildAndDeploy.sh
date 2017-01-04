@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Clone the repository
+# Repository
 if [ ! -d "stackservice" ]; then
+	# Clone the repository if it doesn't already exist
 	echo "Cloning the stackservice repository from git hub..."
-	# Clone the repository if it doesn't already exist..
 	git clone https://github.com/nvnkmrpdy/stackservice.git
 	echo "Repository stackservice cloned from git hub"
 	# cd into the parent directory
