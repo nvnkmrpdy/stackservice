@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Client App</title>
+		<link href="css/style.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/stack_service.js"></script>
+	</head>
+	<body>
+		<div id="content">
+			<h2>Stack client</h2>
+			<div id="infoMessage"></div>
+			<div id="actions">
+				<div id="pushAction" class="action">
+					<input type="number" name="element" id="txtElement" placeholder="Enter value to push" value="" />
+					<button type="button" onclick="push()" id="btnPush" disabled>Push</button>
+				</div>
+				<div id="popAction" class="action">
+					<button type="button" onclick="pop()">Pop</button>
+					<span id="popStatusInfo"></span>
+				</div>
+				<div id="viewAction" class="action">
+					<button type="button" onclick="viewStack()">View/Refresh</button>
+				</div>
+			</div>
+			<div id="stackContent"></div>
+		</div>
+		<div id="sessionTimeoutConfirmation">
+			<h3>You've not been active in this session.</h3>
+			<div>The session will be reset in <span id="sessionTimeoutTimer">01:00</span>.</div>
+			<div>Please choose an action.</div>
+			<div>
+				<button type="button" onclick="continueSession()">Continue the session</button>
+				<button type="button" onclick="resetSession()">Reset the session</button>
+			</div>  
+		</div>
+	</body>
+</html>
