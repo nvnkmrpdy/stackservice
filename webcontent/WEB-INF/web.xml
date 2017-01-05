@@ -33,11 +33,11 @@
 		<welcome-file>stack_client.html</welcome-file>
 	</welcome-file-list>
 	<listener>
-		<listener-class>com.fob.listener.StackHttpSessionListener</listener-class>
+		<listener-class>com.dev.stack.listener.StackHttpSessionListener</listener-class>
 	</listener>
 	<filter>
 		<filter-name>SessionFilter</filter-name>
-		<filter-class>com.fob.filter.RestFilter</filter-class>
+		<filter-class>com.dev.stack.filter.RestFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>SessionFilter</filter-name>
