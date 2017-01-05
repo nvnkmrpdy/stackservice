@@ -184,6 +184,7 @@ function incrementTimer() {
 
 		// 1 min left for the session inactivity timeout
 		if (localStorage.getItem('idleTime') >= triggerTime) {
+			// Last min count down timer is triggered
 			timerCountdownTriggered = true;
 			sessionAboutToTimeOut();
 		}
@@ -192,7 +193,9 @@ function incrementTimer() {
 
 // Session timeout dialog
 function sessionAboutToTimeOut() {
+	// Trigger the last min of session inactivity count down timer
 	startTimer(60, $('#sessionTimeoutTimer'));
+	// Hide the main content and bring in the timer to view
 	$('#content').hide();
 	$('#sessionTimeoutConfirmation').fadeIn(500);
 }
@@ -206,6 +209,7 @@ function startTimer(durationInSec, $timerDisplayElement) {
 	clearInterval(sessionTimeoutTimer);
 	clearInterval(idleTimer);
 
+	// Count down from 1 min.
 	sessionTimeoutTimer = setInterval(function() {
 		
 		// If some session activity has happened in some other tab
@@ -226,7 +230,7 @@ function startTimer(durationInSec, $timerDisplayElement) {
 		// Count down reached 00:00
 		if (--timer < 0) {
 			clearInterval(sessionTimeoutTimer);
-			resetSession();
+			resetSession(true);
 		}
 
 	}, 1000);
@@ -236,15 +240,20 @@ function startTimer(durationInSec, $timerDisplayElement) {
 function continueSession() {
 	timerCountdownTriggered = false;
 	clearInterval(sessionTimeoutTimer);
+	// Hide the count down timer and bring in the main content
 	$('#sessionTimeoutConfirmation').hide()
 	$('#content').fadeIn(500);
+	// Reset the timer part
+	$('#sessionTimeoutTimer').text('01:00');
 	viewStack(true);
 }
 
 // To reset in the current session and start a new one
-function resetSession() {
+function resetSession(autoReset) {
 	timerCountdownTriggered = false;
 	clearInterval(sessionTimeoutTimer);
+	// Reset the timer part
+	$('#sessionTimeoutTimer').text('01:00');
 	
 	$.ajax({
 		url: 'invalidate_session',
@@ -252,8 +261,11 @@ function resetSession() {
 		success: function(data) {
 			$('#sessionTimeoutConfirmation').hide()
 			$('#content').fadeIn(500);
-			// DIsplay message to the user about the reset of the session
-			animateMessage($('#infoMessage'), 'Your session has been reset due to inactivity.');
+			// Display message to the user about the reset of the session
+			if(autoReset) {
+				animateMessage($('#infoMessage'), 'Your session has been reset due to inactivity.');	
+			}
+			
 			viewStack(false);
 		}, 
 		error: function(jqXHR, textStatus, errorThrown) {
