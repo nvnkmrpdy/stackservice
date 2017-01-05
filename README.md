@@ -48,12 +48,11 @@ The developed back-end application supports the following functionalities.
 In addition to the basic functionalities mentioned above, the application also
 
 - treats application access via multiple tabs in a browser as the same session.
-- tracks the session inactivity (client interaction with server) and resets the session after 5 min of inactivity.
-- Uses localStorage to track the inactivity of the session even if the application is open in many tabs.
-- Runs a count down timer from 01:00 at the end of 4th minute of inactivity and let the user choose to either continue or reset the current session. If no user action is performed and the count down timer hits 00:00, the client app automatically resets the current session. 
-- invalidates the session on the server sided after 10 min of inactivity to avoid build up of unused sessions.
+- tracks the session inactivity (client interaction with server) and resets the session after 5 minutes of inactivity.
+- uses localStorage to track the inactivity of the session even if the application is open in many tabs.
+- runs a count down timer from 01:00 at the end of 4th minute of inactivity and let the user choose to either continue or reset the current session. If no user action is performed and the count down timer hits 00:00, the client app automatically resets the current session. 
+- invalidates the session on the server after 10 minutes of inactivity to avoid the build up of unused sessions and their stack.
  
-
 
 *********************************************************************************************************
 
@@ -64,7 +63,7 @@ When the user accesses the application for the first time from a new browser ses
 
 #### Push
 - The user can input an integer in the text-box and click on the _Push_ button.
-- The client app validates if the input is a valid number and lies with in the integer range. If not, it displays the appropriate message to the user.
+- The client app validates if the input is a valid number and lies within the integer range. If not, it displays the appropriate message to the user.
 - If the input is valid, it invokes the push REST service and the element is pushed to the stack.
 - On successful push operation, the client app displays an info message about the operation and refreshes the content of the stack displayed in the page.
 
@@ -74,7 +73,7 @@ When the user accesses the application for the first time from a new browser ses
 - If the pop operation is performed on an empty stack, the message _Pop operation not permitted on empty stack_ is displayed.
 
 
-#### Scopes for improvement
+#### Scopes for improvement:
 
 The following may be considered as enhancements for the application.
 
