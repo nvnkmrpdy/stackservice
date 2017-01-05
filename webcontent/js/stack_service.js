@@ -4,7 +4,7 @@ var STATUS_CODE = {
 		STACK_DOES_NOT_EXIST: 601
 };
 
-var MAX_SESSION_INACTIVITY_TIME_IN_MINUTES = 2;
+var MAX_SESSION_INACTIVITY_TIME_IN_MINUTES = 5;
 var sessionTimeoutTimer, idleTimer, timerCountdownTriggered = false;
 
 $(document).ready(function() {
