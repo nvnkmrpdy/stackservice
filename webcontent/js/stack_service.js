@@ -27,6 +27,8 @@ function bindEvents() {
 	$('#txtElement').on('keyup change', function(e) {
 		// Disable the push button if the textbox is empty, enable otherwise
 		$('#btnPush').prop('disabled', $(this).val() == '');
+		// Empty the infoMessage
+		$('#infoMessage').empty();
 	});
 }
 
@@ -91,7 +93,7 @@ function push() {
 	
 	// Value out of integer range
 	if(valueToPush > 2147483647 || valueToPush < -2147483648) {
-		animateMessage($('#infoMessage'), 'Input os out of integer range. Please enter a value between -2147483648 and 2147483647.');
+		animateMessage($('#infoMessage'), 'Input is out of integer range. Please enter a value between -2147483648 and 2147483647.');
 		return false;
 	}
 	
@@ -105,8 +107,10 @@ function push() {
 			$('#txtElement').val('');
 			// Disable the push button
 			$('#btnPush').prop('disabled', true);
+			// Display a message to the user
+			animateMessage($('#infoMessage'), valueToPush + ' is pushed to the stack.', true);
 			// Refresh the stack contents on display after successful push operation.
-			viewStack(true);
+			viewStack(false);
 		}, 
 		error: function(jqXHR, textStatus, errorThrown) {
 			if(jqXHR.status == STATUS_CODE.STACK_DOES_NOT_EXIST) {
@@ -129,7 +133,7 @@ function pop() {
 		method: 'DELETE',
 		success: function(data) {
 			// Display a message with the popped data
-			animateMessage($('#infoMessage'), data + ' has been popped from the stack.');
+			animateMessage($('#infoMessage'), data + ' has been popped from the stack.', true);
 			// Refresh the stack contents on display after successful pop operation.
 			viewStack(false);
 		}, 
@@ -145,8 +149,15 @@ function pop() {
 	});
 }
 
-function animateMessage($element, message) {
+function animateMessage($element, message, autoHide) {
 	$element.hide().text(message).fadeIn(500);
+	
+	if(autoHide) {
+		// Auto hide the message in 2 seconds
+		setTimeout(function() {
+			$element.empty();
+		}, 2000);
+	}
 }
 
 function startIdleTimer() {
