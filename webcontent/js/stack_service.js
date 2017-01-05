@@ -156,7 +156,7 @@ function animateMessage($element, message, autoHide) {
 		// Auto hide the message in 2 seconds
 		setTimeout(function() {
 			$element.empty();
-		}, 2000);
+		}, 5000);
 	}
 }
 
