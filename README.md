@@ -13,21 +13,25 @@ A simple Stack Service webapp supporting the basic stack operations over a brows
 
 
 ##Steps to build and deploy the application
-Simply run the `buildAndDeploy.sh` script in a system with the GIT client and Docker installed
+Simply run the `buildAndDeploy.sh` script in a system with the GIT client and Docker installed.
 
 OR
 
 Perform the following steps
 
-Pre-requisite tools/softwares: GIT client, Apache maven, Apache Tomcat server (or any other web server)
+__Pre-requisite tools/softwares:__ GIT client, Apache maven, Apache Tomcat server (or any other web server)
 
 1. Clone the stackservice repository into your system.
+
   `$ git clone https://github.com/nvnkmrpdy/stackservice`
 2. Enter the parent directory
+
   `$ cd stackservice`
 3. Build and package the project to generate the war file
+
   `$ mvn clean package`
 4. Copy the war file generated to the server deployment directory
+
   `$ cp target/stack.war <webapps/deployment_directory_of_your_server>`
 5. Start the server and the application can be accessed via URL _http://<ip>:<port>/stack_
 
