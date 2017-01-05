@@ -1,4 +1,4 @@
-package com.fob.constants;
+package com.dev.stack.constants;
 
 public class Constants {
 

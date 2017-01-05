@@ -1,6 +1,6 @@
-package com.fob.filter;
+package com.dev.stack.filter;
 
-import static com.fob.constants.Constants.SESSION_INACTIVITY_TIMEOUT;
+import static com.dev.stack.constants.Constants.SESSION_INACTIVITY_TIMEOUT;
 
 import java.io.IOException;
 

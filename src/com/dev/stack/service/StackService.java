@@ -1,7 +1,7 @@
-package com.fob.service;
+package com.dev.stack.service;
 
-import static com.fob.constants.Constants.POP_ON_EMPTY_STACK;
-import static com.fob.constants.Constants.STACK_DOES_NOT_EXIST;
+import static com.dev.stack.constants.Constants.POP_ON_EMPTY_STACK;
+import static com.dev.stack.constants.Constants.STACK_DOES_NOT_EXIST;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
@@ -17,8 +17,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.fob.exception.StackNotFoundException;
-import com.fob.operations.StackOperations;
+import com.dev.stack.exception.StackNotFoundException;
+import com.dev.stack.operations.StackOperations;
 
 /**
  * Service class exposing web services for stack operations.

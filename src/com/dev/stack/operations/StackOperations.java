@@ -1,11 +1,11 @@
-package com.fob.operations;
+package com.dev.stack.operations;
 
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-import com.fob.exception.StackNotFoundException;
+import com.dev.stack.exception.StackNotFoundException;
 
 /**
  * Operations on the stack.

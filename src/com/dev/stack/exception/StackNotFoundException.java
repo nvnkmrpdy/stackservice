@@ -1,4 +1,4 @@
-package com.fob.exception;
+package com.dev.stack.exception;
 
 /**
  * Custom Exception class for when the stack associated with current session is not found.

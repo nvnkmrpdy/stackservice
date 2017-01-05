@@ -1,10 +1,10 @@
-package com.fob.listener;
+package com.dev.stack.listener;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import com.fob.operations.StackOperations;
+import com.dev.stack.operations.StackOperations;
 
 /**
  * Custom HTTPSessionListener for the Stack service app.
