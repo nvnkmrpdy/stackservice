@@ -1,9 +1,9 @@
-#Stack Service.
+# Stack Service.
 
 A simple Stack Service webapp supporting the basic stack operations over a browser client page.
 
 
-##Tools and Technologies used :
+## Tools and Technologies used :
 - JDK 1.8
 - Apache Tomcat 8
 - Apache Maven
@@ -12,7 +12,7 @@ A simple Stack Service webapp supporting the basic stack operations over a brows
 - HTML, CSS, JavaScript, jQuery v2.2.4
 
 
-##Steps to build and deploy the application
+## Steps to build and deploy the application
 Simply run the `buildAndDeploy.sh` script in a system with the GIT client and Docker installed.
 
 OR
